@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POWERSHIFT · Website mockups</title>
+<link rel="icon" type="image/png" sizes="32x32" href="maquettes/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="maquettes/assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F7F3EA;
+  --ink: #1F1E1B;
+  --mute: #5E5B54;
+  --line: #DAD3C4;
+  --acc: #B4432A;
+  --card: #FFFDF8;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 17px/1.55 "Archivo", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--acc); }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; font-weight: 800; font-stretch: 80%; letter-spacing: .14em; font-size: 15px; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+h1 { margin: 0 0 18px; font-weight: 800; font-stretch: 72%; font-size: clamp(44px, 7vw, 92px); line-height: .92; letter-spacing: -.01em; }
+.intro { max-width: 62ch; color: var(--mute); margin: 0; }
+.intro + .intro { margin-top: 10px; }
+
+h2 { margin: 56px 0 6px; font-weight: 700; font-stretch: 80%; font-size: 15px; text-transform: uppercase; letter-spacing: .14em; color: var(--mute); }
+.group-note { margin: 0 0 22px; color: var(--mute); font-size: 15px; max-width: 70ch; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 28px; }
+.card { background: var(--card); border: 1px solid var(--line); display: flex; flex-direction: column; }
+.thumb { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--line); }
+.thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .35s; }
+.card:hover .thumb img { transform: scale(1.025); }
+.body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.tag { font-weight: 700; font-stretch: 80%; font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); }
+.card h3 { margin: 4px 0 8px; font-weight: 700; font-stretch: 84%; font-size: 24px; line-height: 1.1; letter-spacing: -.01em; }
+.card h3 a { color: inherit; text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.card p { margin: 0 0 16px; font-size: 15.5px; color: #3A3833; }
+.open { margin-top: auto; font-weight: 600; font-size: 15px; text-decoration: none; }
+.open:hover { text-decoration: underline; text-underline-offset: 4px; }
+.palettes { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.palettes a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600;
+}
+.palettes a::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--dot); }
+.palettes a:hover { border-color: var(--ink); }
+
+footer { margin-top: 72px; padding: 28px 0 56px; border-top: 1px solid var(--line); color: var(--mute); font-size: 14.5px; }
+footer p { margin: 0 0 6px; max-width: 80ch; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><img src="maquettes/assets/favicon-180.png" alt="">POWERSHIFT</div>
+    <h1>Website mockups</h1>
+    <p class="intro">Seven design directions for the POWERSHIFT website. Every mockup uses the same draft content, which the team will revise, and the same structure: a single long page where each “Learn more” opens in place.</p>
+    <p class="intro">Photos, portraits, logos and the Theory of Change figure are placeholders until the team supplies them.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h2>Design directions</h2>
+  <div class="grid">
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-a.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-a.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">A</span>
+        <h3><a href="maquettes/powershift-a.html">Signalform, corrected</a></h3>
+        <p>The closest to the reference layout: mosaic hero, large condensed black headings, warm neutrals and a single teal accent.</p>
+        <a class="open" href="maquettes/powershift-a.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-b.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-b.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">B</span>
+        <h3><a href="maquettes/powershift-b.html">Activist screenprint</a></h3>
+        <p>One blue ink on raw paper: stencil headings, dotted rules, halftone images and hand-drawn arrows.</p>
+        <a class="open" href="maquettes/powershift-b.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-b-riso.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-b-riso.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">B2</span>
+        <h3><a href="maquettes/powershift-b-riso.html">Riso colour</a></h3>
+        <p>Direction B printed in four risograph inks: blue, fluorescent pink, yellow and their orange overprint. Bands of geometric shapes separate the sections.</p>
+        <a class="open" href="maquettes/powershift-b-riso.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-c.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-c.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">C</span>
+        <h3><a href="maquettes/powershift-c.html">Documentary fieldwork</a></h3>
+        <p>Editorial and scientific: serif headings, text in columns, fine rules, deep green bands and a magenta accent.</p>
+        <a class="open" href="maquettes/powershift-c.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-c2.html?palette=abricot" tabindex="-1" aria-hidden="true"><img src="img/powershift-c2-abricot.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">C2</span>
+        <h3><a href="maquettes/powershift-c2.html?palette=abricot">Documentary, warm</a></h3>
+        <p>Direction C set in the typeface of A, with warmer colours. Three palettes to compare; a switcher in the bottom corner changes the palette on the page.</p>
+        <div class="palettes">
+          <a href="maquettes/powershift-c2.html?palette=abricot" style="--dot:#F2A65A">Apricot</a>
+          <a href="maquettes/powershift-c2.html?palette=safran" style="--dot:#E9B44C">Saffron</a>
+          <a href="maquettes/powershift-c2.html?palette=prune" style="--dot:#6E2A40">Plum</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <h2>From Lou’s references</h2>
+  <p class="group-note">Lou’s two mockups rebuilt as web pages with the full content. The “Who decides? Whose knowledge counts?” banner from the originals is replaced by the framework section.</p>
+  <div class="grid">
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-lou-field-notes.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-lou-field-notes.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">Lou · 1</span>
+        <h3><a href="maquettes/powershift-lou-field-notes.html">Field notes</a></h3>
+        <p>A research notebook: spiral binding, stamped blue headings, highlighter, taped photos and torn paper cards.</p>
+        <a class="open" href="maquettes/powershift-lou-field-notes.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-lou-poster.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-lou-poster.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">Lou · 2</span>
+        <h3><a href="maquettes/powershift-lou-poster.html">Collective poster</a></h3>
+        <p>Painted bands in pink, yellow and cyan, slab-serif headings and coloured number badges.</p>
+        <a class="open" href="maquettes/powershift-lou-poster.html">Open mockup →</a>
+      </div>
+    </article>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>POWERSHIFT: Understanding and Shifting Power in Biodiversity Conservation by Integrating Insights from Social Change Movements. Supported through the Biodiversa+ BiodivTransform call.</p>
+    <p>Mockups for review by the project team, November 2026. Fonts are used under the <a href="maquettes/assets/fonts/OFL.txt">SIL Open Font License</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>

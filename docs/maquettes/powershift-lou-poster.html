@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POWERSHIFT · Lou · Collective poster</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+<!--
+  Maquette de Lou « 02 / Collective poster » (01-brief/materia/maquette-3.jpg) traduite en HTML,
+  avec le contenu réel du site (01-brief/materia/contenu-site.md), dans l'ordre des maquettes A, B, C.
+  Le bandeau « Who decides? Whose knowledge counts? » est remplacé par la section Framework.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@700;800;900&family=Inter+Tight:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f7f4ec;
+  --sheet: #fffdf7;
+  --tile: #f1ede4;
+  --ink: #1c1c1a;
+  --muted: #55534e;
+  --blue: #1f3f94;
+  --cyan: #10cbd0;
+  --cyan-soft: rgba(16, 203, 208, .5);
+  --pink: #f35fa9;
+  --pink-soft: rgba(243, 95, 169, .55);
+  --yellow: #fec92b;
+  --yellow-soft: rgba(254, 201, 43, .7);
+  --rule: #9adfe1;
+  --wrap: 1200px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; }
+body {
+  /* papier : grain en fond, sous le contenu */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.55 "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible, summary:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 4px;
+}
+p { margin: 0 0 1em; }
+h2, h3, h4 { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+.todo { color: var(--muted); font-style: italic; }
+
+/* ---------- Primitives « carnet » ---------- */
+.stamp {
+  font-family: "Anton", "Impact", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--blue);
+  line-height: .95;
+  letter-spacing: .005em;
+  font-size: clamp(44px, 6vw, 84px);
+  filter: url(#stamp);
+}
+.stamp.s { font-size: clamp(36px, 4.4vw, 60px); }
+
+.tape {
+  display: inline-block;
+  padding: 7px 14px 6px;
+  font: 700 13px/1 "Space Mono", monospace;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--cyan-soft);
+  clip-path: polygon(0 12%, 4% 0, 30% 6%, 62% 0, 96% 5%, 100% 0, 98% 52%, 100% 100%, 70% 94%, 35% 100%, 3% 95%, 0 100%, 2% 50%);
+  margin-bottom: 18px;
+}
+.tape.pink { background: var(--pink-soft); }
+.tape.yellow { background: var(--yellow-soft); }
+
+.scrap {
+  position: absolute;
+  width: 74px; height: 26px;
+  background: var(--pink-soft);
+  clip-path: polygon(0 10%, 8% 0, 92% 8%, 100% 0, 96% 60%, 100% 100%, 6% 92%, 0 100%);
+  pointer-events: none;
+}
+
+.sheet { position: relative; isolation: isolate; padding: 28px 26px 22px; }
+.sheet::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--sheet);
+  filter: url(#torn) drop-shadow(0 2px 3px rgba(40, 30, 10, .14));
+  z-index: -1;
+}
+
+mark.hl {
+  color: var(--ink);
+  background: linear-gradient(transparent 10%, var(--yellow) 10%, var(--yellow) 90%, transparent 90%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  padding: 0 .18em;
+}
+
+.link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600; font-size: 15px;
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--cyan);
+}
+.link span { color: var(--blue); }
+
+/* accordéons */
+details.acc { margin-top: 10px; }
+details.acc > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 600; font-size: 14px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--cyan);
+}
+details.acc > summary::-webkit-details-marker { display: none; }
+details.acc > summary::after { content: "↓"; color: var(--blue); transition: transform .2s; }
+details.acc[open] > summary::after { transform: rotate(180deg); }
+.acc-in { padding: 18px 0 6px; font-size: 15.5px; }
+.acc-in h4 { font-size: 15px; font-weight: 700; color: var(--blue); margin: 14px 0 6px; }
+.acc-in h4:first-child { margin-top: 0; }
+
+/* sections */
+.sec { position: relative; padding: 88px 0; border-top: 2px solid var(--rule); }
+.split { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; }
+.split > :last-child { border-left: 2px solid var(--rule); padding-left: 48px; }
+.lede { font-size: 19px; }
+
+/* ---------- En-tête ---------- */
+.top { padding: 22px 0 6px; }
+.top .wrap { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.brand {
+  position: relative;
+  font: 700 22px/1 "Inter Tight", sans-serif;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+.brand::after {
+  content: ""; position: absolute; left: -2px; right: -6px; bottom: 0; height: 7px;
+  background: var(--cyan);
+  border-radius: 40% 60% 50% 50%;
+  transform: rotate(-1.5deg);
+  filter: url(#rough);
+}
+.nav { margin-left: auto; display: flex; gap: 28px; flex-wrap: wrap; font-size: 15px; }
+.nav a { text-decoration: none; }
+.nav a:hover { text-decoration: underline; text-decoration-color: var(--cyan); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+
+/* ---------- HERO (calé sur la planche de Lou, 1600 px, 1cqw = 16 px) ---------- */
+.hero-wrap { container-type: inline-size; max-width: 1600px; margin: 0 auto; }
+.hero { position: relative; aspect-ratio: 1600 / 825; overflow: hidden; }
+.hero {
+  --tile-size: 11.4375cqw;
+  --gap: .375cqw;
+  --pitch: 11.8125cqw;
+}
+.mosaic {
+  position: absolute; left: 20.5cqw; top: .9375cqw;
+  display: grid;
+  grid-template-columns: repeat(4, var(--tile-size));
+  grid-template-rows: repeat(4, var(--tile-size));
+  gap: var(--gap);
+}
+.mosaic > i { display: block; grid-column: calc(var(--c) + 1); grid-row: calc(var(--r) + 1); }
+.mosaic .photo {
+  background: var(--tile) url("assets/lou-fleur-mosaique.jpg") no-repeat;
+  background-size: calc(4 * var(--tile-size) + 3 * var(--gap));
+  background-position: calc(var(--c) * var(--pitch) * -1) calc(var(--r) * var(--pitch) * -1);
+}
+.mosaic .cyan { background: var(--cyan); }
+.mosaic .yellow { background: var(--yellow); }
+.square-pink { position: absolute; left: 23.5625cqw; top: 38.9375cqw; width: 6.75cqw; height: 6.5cqw; background: var(--pink); }
+.word {
+  position: absolute; margin: 0;
+  font-family: "Inter Tight", sans-serif; font-weight: 700;
+  line-height: .73; letter-spacing: -.035em; color: var(--ink);
+}
+.word-power { left: 3.35cqw; top: 5.6cqw; font-size: 8.4cqw; }
+.word-shift { left: 53.2cqw; top: 40.25cqw; font-size: 10.6cqw; letter-spacing: .025em; }
+.intro { position: absolute; left: 4.1875cqw; top: 27.6cqw; width: 14.5cqw; }
+.intro p { margin: 0; font-size: 1.3125cqw; line-height: 1.48; font-weight: 300; color: var(--muted); }
+.explore {
+  display: inline-flex; align-items: center; gap: .9cqw;
+  margin-top: 1.75cqw; padding: 0 .2cqw .7cqw; width: 12.7cqw;
+  border-bottom: 1px solid #d7d6d2;
+  font-size: 1.125cqw; font-weight: 500; text-decoration: none;
+}
+.explore span { color: var(--cyan); font-size: 1.25cqw; }
+.lede-hero { position: absolute; left: 68.6cqw; top: 24.7cqw; width: 23cqw; }
+.lede-hero p { margin: 0; font-size: 1.69cqw; line-height: 1.22; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 1.3cqw;
+  margin-top: 1.25cqw; margin-left: .2cqw;
+  width: 12.25cqw; height: 3.25cqw;
+  background: var(--cyan);
+  font-size: 1.125cqw; font-weight: 500; text-decoration: none;
+}
+@container (max-width: 760px) {
+  .hero { aspect-ratio: auto; padding: 24px 16px 48px; display: flex; flex-direction: column; gap: 24px; }
+  .hero > * { position: static; }
+  .mosaic { --tile-size: calc((100cqw - 32px - 12px) / 4); --gap: 4px; --pitch: calc(var(--tile-size) + var(--gap)); order: 2; }
+  .square-pink { display: none; }
+  .word { line-height: .8; }
+  .word-power { order: 1; font-size: 22cqw; }
+  .word-shift { order: 3; font-size: 22cqw; letter-spacing: -.02em; align-self: flex-end; margin-top: -10cqw; position: relative; left: auto; top: auto; }
+  .lede-hero { order: 4; width: auto; }
+  .lede-hero p { font-size: 20px; }
+  .btn { width: auto; height: auto; padding: 14px 20px; font-size: 16px; gap: 14px; margin: 16px 0 0; }
+  .intro { order: 5; width: auto; }
+  .intro p { font-size: 17px; }
+  .explore { width: auto; font-size: 15px; gap: 10px; padding-bottom: 8px; margin-top: 16px; }
+  .explore span { font-size: 16px; }
+}
+
+/* ---------- Why power matters ---------- */
+.why .scrap { left: -8px; top: -46px; transform: rotate(-4deg); }
+.why h3 { font-size: clamp(22px, 2.3vw, 28px); line-height: 1.3; font-weight: 700; margin-bottom: 22px; }
+
+/* ---------- Framework : feuilles déchirées scotchées ---------- */
+.framework { background: linear-gradient(var(--paper), #f1ede2); }
+.framework .head { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: end; margin-bottom: 48px; }
+.dims { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: start; }
+.dims .sheet:nth-child(1) { transform: rotate(-1.2deg); }
+.dims .sheet:nth-child(2) { transform: rotate(.8deg); margin-top: 18px; }
+.dims .sheet:nth-child(3) { transform: rotate(-.6deg); }
+.dims .sheet:nth-child(4) { transform: rotate(1.1deg); margin-top: 26px; }
+.dims .sheet > .strip {
+  position: absolute; top: -12px; left: 50%; width: 92px; height: 24px; margin-left: -46px;
+  background: var(--yellow-soft);
+  clip-path: polygon(0 10%, 8% 0, 92% 8%, 100% 0, 96% 60%, 100% 100%, 6% 92%, 0 100%);
+  transform: rotate(-3deg);
+}
+.dims .sheet:nth-child(2) > .strip { background: var(--pink-soft); transform: rotate(4deg); }
+.dims .sheet:nth-child(3) > .strip { background: var(--cyan-soft); }
+.dims h3 { font: 400 30px/1 "Anton", sans-serif; text-transform: uppercase; color: var(--blue); filter: url(#stamp); }
+.dims .q { font: 400 13px/1.4 "Space Mono", monospace; color: var(--muted); margin: 8px 0 16px; }
+.dims ul { list-style: none; margin: 0; padding: 0; font-size: 14.5px; line-height: 1.45; }
+.dims li { padding: 9px 0; border-top: 1px dashed #cfc9bb; }
+.dims li b { display: block; font-weight: 700; }
+.framework .close { margin-top: 44px; max-width: 760px; font-size: 19px; }
+
+/* ---------- Research : carnet à spirale ---------- */
+.spiral { padding-left: 0; }
+.spiral::before {
+  content: ""; position: absolute; left: 10px; top: 24px; bottom: 24px; width: 22px;
+  background: radial-gradient(circle at 11px 17px, var(--paper) 0 4.5px, #c9c3b6 5px 6.5px, transparent 7px) 0 0 / 22px 36px repeat-y;
+}
+.research .split { grid-template-columns: 4fr 8fr; }
+.research .arrow { display: block; width: 150px; margin-top: 30px; }
+.axis {
+  display: grid; grid-template-columns: 72px 1fr; gap: 22px;
+  padding: 26px 0; border-top: 2px solid var(--rule);
+}
+.axis:first-child { border-top: 0; padding-top: 0; }
+.num {
+  position: relative; isolation: isolate;
+  width: 64px; height: 64px;
+  display: grid; place-items: center;
+  font: 400 40px/1 "Anton", sans-serif; color: var(--blue);
+}
+.num::before { content: ""; position: absolute; inset: 0; background: var(--cyan); filter: url(#rough); z-index: -1; }
+.num.y::before { background: var(--yellow); }
+.num.p::before { background: var(--pink); }
+.axis h3 { font-size: 20px; line-height: 1.3; font-weight: 700; margin-bottom: 6px; }
+.axis .ask { font-style: italic; color: var(--muted); margin-bottom: 10px; }
+.axis p { font-size: 15.5px; }
+
+/* ---------- Theory of change ---------- */
+.change h3 { font-size: 21px; font-weight: 700; margin-bottom: 14px; line-height: 1.3; }
+.outcomes { list-style: none; counter-reset: o; margin: 22px 0 26px; padding: 0; }
+.outcomes li { counter-increment: o; display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 12px 0; border-top: 1px dashed #cfc9bb; }
+.outcomes li::before { content: counter(o, decimal-leading-zero); font: 700 14px/1.6 "Space Mono", monospace; color: var(--blue); }
+.fern { position: absolute; right: 3%; bottom: 40px; width: 120px; opacity: .9; pointer-events: none; }
+.fig-ph {
+  display: grid; place-items: center; text-align: center;
+  min-height: 260px; padding: 24px;
+  border: 2px dashed var(--rule);
+  font: 400 13px/1.5 "Space Mono", monospace; color: var(--muted);
+}
+
+/* ---------- Places ---------- */
+.places h2 { margin-bottom: 26px; }
+.places .intro-txt { max-width: 820px; }
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+.case-photo {
+  position: relative; aspect-ratio: 4 / 3;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(0,0,0,.035) 12px 13px),
+    #dcd8cd;
+  display: grid; place-items: center; text-align: center;
+  padding: 24px 28px 48px;
+  font: 400 12.5px/1.5 "Space Mono", monospace; color: #6b6860;
+  box-shadow: 0 2px 4px rgba(40, 30, 10, .12);
+}
+.case-photo::before {
+  content: ""; position: absolute; top: -11px; left: 40%; width: 84px; height: 22px;
+  background: var(--yellow-soft);
+  clip-path: polygon(0 10%, 8% 0, 92% 8%, 100% 0, 96% 60%, 100% 100%, 6% 92%, 0 100%);
+  transform: rotate(-4deg);
+}
+.cases .case:nth-child(2) .case-photo::before { background: var(--pink-soft); transform: rotate(3deg); left: 22%; }
+.cases .case:nth-child(3) .case-photo::before { background: var(--cyan-soft); left: 30%; }
+.case-photo .where {
+  position: absolute; left: 14px; bottom: -14px;
+  padding: 9px 16px;
+  font: 700 15px/1.2 "Inter", sans-serif; color: var(--ink); text-align: left;
+  isolation: isolate;
+}
+.case-photo .where::before { content: ""; position: absolute; inset: 0; background: var(--sheet); filter: url(#torn); z-index: -1; }
+.case h3 { font-size: 19px; font-weight: 700; margin: 34px 0 10px; line-height: 1.3; }
+.case p { font-size: 15.5px; }
+
+.networks { display: grid; grid-template-columns: auto repeat(3, 1fr); gap: 0; margin-top: 64px; align-items: start; }
+.networks .tape { margin: 4px 28px 0 0; }
+.networks .net { padding: 0 24px; border-left: 2px solid var(--rule); }
+.networks h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.networks p { font-size: 14.5px; color: #34322e; }
+
+/* ---------- Team : carrousel ---------- */
+.team h3.q { font-size: 20px; font-weight: 700; margin: 36px 0 22px; }
+.carousel { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 12px; }
+.carousel button {
+  width: 44px; height: 44px; border: 0; background: none; cursor: pointer;
+  font: 400 34px/1 "Inter", sans-serif; color: var(--ink);
+}
+.band {
+  display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * 24px) / 3);
+  gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.band::-webkit-scrollbar { display: none; }
+.person { scroll-snap-align: start; font-size: 14.5px; }
+.portrait {
+  aspect-ratio: 1 / 1; background: #dedad0; margin-bottom: 14px;
+  display: grid; place-items: end center; overflow: hidden;
+}
+.portrait svg { width: 62%; fill: #b9b5ab; }
+.person b { display: block; font-size: 15.5px; }
+.person span { display: block; color: var(--muted); }
+.dots { display: flex; justify-content: center; gap: 12px; margin-top: 22px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.dots i.on { background: var(--cyan); border-color: var(--cyan); }
+
+/* ---------- Results ---------- */
+.results h2 { position: relative; display: inline-block; }
+.results h2::after {
+  content: ""; position: absolute; left: 0; right: 20%; bottom: -14px; height: 9px;
+  background: var(--yellow); filter: url(#rough); transform: rotate(-1deg);
+}
+.outs { list-style: none; margin: 24px 0; padding: 0; }
+.outs li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px dashed #cfc9bb; font-weight: 500; }
+.outs li i { font: 400 12px/1.8 "Space Mono", monospace; font-style: normal; color: var(--blue); text-transform: uppercase; letter-spacing: .12em; }
+.mountain { display: block; width: 260px; margin: 18px 0 0 auto; }
+
+/* ---------- Contact ---------- */
+.foot { padding: 64px 0 80px; border-top: 2px solid var(--rule); }
+.foot .split { grid-template-columns: 4fr 8fr; }
+.foot h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.btn-line {
+  display: inline-flex; gap: 12px; align-items: center;
+  padding: 10px 16px; border: 2px solid var(--cyan);
+  font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 8px;
+}
+.logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 18px 0; }
+.logo-ph {
+  aspect-ratio: 5 / 2; border: 1.5px solid #8f8b82;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), #8f8b82 50%, transparent calc(50% + 1px)),
+    linear-gradient(to bottom right, transparent calc(50% - 1px), #8f8b82 50%, transparent calc(50% + 1px));
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 860px) {
+  .sec { padding: 64px 0; }
+  .split, .research .split, .foot .split, .framework .head { grid-template-columns: 1fr; gap: 28px; }
+  .split > :last-child { border-left: 0; padding-left: 0; }
+  .dims, .cases { grid-template-columns: 1fr; gap: 36px; }
+  .dims .sheet { margin-top: 0 !important; }
+  .networks { grid-template-columns: 1fr; gap: 22px; }
+  .networks .net { border-left: 0; border-top: 2px solid var(--rule); padding: 18px 0 0; }
+  .band { grid-auto-columns: 78%; }
+  .carousel { grid-template-columns: 1fr; }
+  .carousel button { display: none; }
+  .spiral::before { display: none; }
+  .logos { grid-template-columns: repeat(2, 1fr); }
+  .nav { margin-left: 0; gap: 18px; }
+  .fern { display: none; }
+}
+
+/* ===================== Collective poster : surcharges ===================== */
+:root {
+  --pink-band: #ec5c9f;
+  --cream: #fffaf0;
+  --arrow: #1f5fbf;
+}
+body { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .25 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), #f8f4ea; }
+.brand::after { background: var(--pink); }
+.sec { border-top: 0; }
+
+/* coup de peinture : à poser sur un élément .paint, couleur dans --paint */
+.paint { position: relative; isolation: isolate; }
+.paint::before {
+  content: ""; position: absolute; inset: -4px -16px; z-index: -1;
+  background-color: var(--paint, var(--cyan));
+  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.13) 0 2px, transparent 2px 8px);
+  filter: url(#brush);
+}
+.slab {
+  font-family: "Rokkitt", Georgia, serif; font-weight: 900;
+  text-transform: uppercase; letter-spacing: -.005em; line-height: .95;
+  color: var(--ink);
+}
+.spark { display: inline-block; width: .7em; height: .7em; vertical-align: top; margin-left: .25em; }
+
+/* bandeau pleine largeur, titre crème */
+.banner {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 48px; padding: 18px 28px 16px;
+  font-size: clamp(40px, 5.6vw, 78px);
+  color: var(--cream);
+  --paint: var(--pink-band);
+  transform: rotate(-.6deg);
+}
+.banner .spark { color: var(--cream); width: 40px; height: 40px; flex: none; margin-left: 8px; }
+
+.claim {
+  font: 800 clamp(26px, 2.9vw, 40px)/1.12 "Inter", sans-serif; letter-spacing: -.02em;
+}
+.uline { text-decoration: underline; text-decoration-color: var(--pink); text-decoration-thickness: 5px; text-underline-offset: 8px; text-decoration-skip-ink: none; }
+
+/* label peint, gros (Team, Results, Theory of change) */
+.label { display: inline-block; padding: 10px 18px 6px; font-size: clamp(36px, 4.4vw, 60px); --paint: var(--cyan); }
+.label.yellow { --paint: var(--yellow); }
+.label-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 26px; }
+.label-row .spark { color: var(--arrow); width: 40px; height: 40px; margin: -8px 0 0 22px; flex: none; }
+
+/* petit label (Network) */
+.tag { display: inline-block; padding: 6px 12px; font: 800 13px/1 "Inter", sans-serif; letter-spacing: .2em; text-transform: uppercase; --paint: var(--cyan); margin: 4px 28px 0 0; }
+
+/* Framework : bande cyan pleine largeur */
+.framework { background: none; padding: 100px 0 110px; }
+.framework.paint { --paint: var(--cyan); }
+.framework.paint::before { inset: 0; }
+.framework .head .slab { font-size: clamp(36px, 4.4vw, 60px); }
+.framework .head { color: var(--ink); }
+.dims h3 { font: 900 30px/1 "Rokkitt", serif; color: var(--ink); filter: none; }
+.dims .q { font: 500 13px/1.4 "Inter", sans-serif; }
+.dims .sheet > .strip { display: none; }
+.framework .close { font-weight: 600; }
+
+/* Research : bloc jaune à gauche */
+.research .split { grid-template-columns: 4.5fr 7.5fr; align-items: start; }
+.research .split > :last-child { border-left: 0; padding-left: 0; }
+.yblock { padding: 40px 34px 36px; --paint: var(--yellow); }
+.yblock::before { inset: 0 -6px; }
+.yblock h2 { font-size: clamp(42px, 4.6vw, 64px); position: relative; display: inline-block; margin-bottom: 26px; }
+.yblock h2::after { content: ""; position: absolute; left: -4px; right: -10px; bottom: -12px; height: 7px; background: var(--ink); filter: url(#rough); transform: rotate(-1.2deg); }
+.yblock h3 { font: 800 clamp(24px, 2.3vw, 32px)/1.15 "Inter", sans-serif; letter-spacing: -.02em; margin-bottom: 18px; }
+.yblock .arrow { display: block; width: 150px; margin-top: 18px; }
+.num { font: 900 42px/1 "Rokkitt", serif; color: var(--ink); width: 68px; height: 68px; }
+.num.p::before { background: var(--pink); }
+.axis { border-top-color: #9fd3e8; }
+
+/* Theory of change */
+.change .narrow { max-width: 860px; }
+.change h3 { font-size: 22px; }
+.fern { display: none; }
+
+/* Places */
+.places .banner { --paint: var(--pink-band); }
+.case-photo::before { display: none; }
+.case-photo { box-shadow: none; }
+.case-photo .where { left: 0; right: 0; bottom: 0; padding: 12px 16px 10px; background: var(--cream); border-bottom: 4px solid var(--cyan); font-size: 16px; }
+.case-photo .where::before { display: none; }
+.cases .case:nth-child(2) .where { border-bottom-color: var(--pink); }
+.cases .case:nth-child(3) .where { border-bottom-color: var(--yellow); }
+.case h3 { margin-top: 24px; }
+
+/* Results */
+.results .split > :last-child { border-left: 2px solid #9fd3e8; }
+.results h3.claim { font-size: clamp(24px, 2.4vw, 32px); margin-bottom: 22px; }
+.results h2::after { display: none; }
+.results h2 { display: inline-block; }
+
+/* Pied de page : coup de pinceau cyan */
+.foot { border-top: 2px solid #9fd3e8; position: relative; }
+.foot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: var(--cyan); filter: url(#brush); }
+.btn-line { background: var(--cyan); border-color: var(--cyan); }
+.logo-ph { border: 0; background: #d6d2c8; }
+
+@media (max-width: 860px) {
+  .banner .spark { display: none; }
+  .research .split { grid-template-columns: 1fr; }
+  .results .split > :last-child { border-left: 0; }
+}
+
+/* menu collant + section en cours */
+.top{position:sticky;top:0;z-index:40;background:#f8f4ea;padding-bottom:12px}
+.nav{position:relative;padding:4px 8px}
+.nav a{position:relative;isolation:isolate;padding:2px 6px}
+.nav a.is-active::before{content:"";position:absolute;inset:0 -3px;z-index:-1;background:var(--pink);filter:url(#brush)}
+.nav a.is-active{color:var(--ink)}
+@media (max-width:860px){
+  .top{flex-wrap:wrap;row-gap:4px}
+  .nav{flex-wrap:nowrap;width:100%;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+  .nav::-webkit-scrollbar{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- filtres d'encre : tampon, bords rugueux, papier déchiré -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="stamp" x="-2%" y="-2%" width="104%" height="104%">
+    <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="rough" x="-10%" y="-30%" width="120%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="7" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="torn" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="4" seed="2" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="brush" x="-4%" y="-25%" width="108%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency=".005 .08" numOctaves="3" seed="11" result="t"/>
+    <feDisplacementMap in="SourceGraphic" in2="t" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">POWERSHIFT</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#why" data-also="framework">Project</a>
+      <a href="#research" data-also="change">Research</a>
+      <a href="#places">Places</a>
+      <a href="#team">Team</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero-wrap" id="top">
+  <div class="hero">
+    <div class="mosaic" aria-hidden="true">
+      <i class="photo" style="--c:1;--r:0"></i>
+      <i class="photo" style="--c:2;--r:0"></i>
+      <i class="photo" style="--c:0;--r:1"></i>
+      <i class="photo" style="--c:1;--r:1"></i>
+      <i class="photo" style="--c:2;--r:1"></i>
+      <i class="photo" style="--c:3;--r:1"></i>
+      <i class="cyan"  style="--c:0;--r:2"></i>
+      <i class="photo" style="--c:1;--r:2"></i>
+      <i class="photo" style="--c:2;--r:2"></i>
+      <i class="photo" style="--c:3;--r:2"></i>
+      <i class="photo" style="--c:1;--r:3"></i>
+      <i class="photo" style="--c:2;--r:3"></i>
+      <i class="yellow" style="--c:3;--r:3"></i>
+    </div>
+    <span class="square-pink" aria-hidden="true"></span>
+    <h1 class="word word-power" aria-label="POWERSHIFT">POWER</h1>
+    <p class="word word-shift" aria-hidden="true">SHIFT</p>
+    <div class="intro">
+      <p>POWERSHIFT investigates how power shapes biodiversity conservation.</p>
+      <a class="explore" href="#why">Explore the project <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="lede-hero">
+      <p>Understanding and shifting power in biodiversity conservation.</p>
+      <a class="btn" href="#research">Our approach <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<section class="sec why" id="why">
+  <div class="wrap">
+    <h2 class="banner paint slab">Why power matters <svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30 L18 22 M14 10 L22 18 M28 6 L28 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg></h2>
+    <div class="split">
+      <h3 class="claim"><span class="uline">Power shapes conservation decisions, relationships and possibilities for change.</span></h3>
+      <div>
+        <p class="lede">Conserving biodiversity involves decisions about land, livelihoods, resources and the futures people want. Power shapes who can influence these decisions, whose knowledge and priorities count, and how conservation’s costs and benefits are distributed.</p>
+      <p>Power operates through relationships between people and organizations, but also through institutions, social norms and worldviews. These influence whose voices are heard, how conservation problems are understood and which approaches are considered possible.</p>
+      <p>Power can constrain action and reinforce inequalities. It can also emerge through people’s confidence and capacity to act, their alliances with others and the visions that guide them.</p>
+      <p>POWERSHIFT examines these interacting dimensions to understand how conservation actors experience, exercise and navigate power, and what this means for more just and effective conservation.</p>
+        <a class="link" href="#framework">Explore the power framework <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec framework paint" id="framework">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="slab">Our framework for understanding power</h2>
+      <div>
+        <p class="lede">POWERSHIFT draws on the multidimensional framework developed through PowerBiodiv. The framework brings together four dimensions: arenas, expressions, spaces and levels of power.</p>
+        <p>It examines the interaction between power over, through which actors influence or control others and their possibilities, and transformative power, through which actors seek to change existing conditions. These can coexist: an initiative challenging one form of domination may reproduce another.</p>
+      </div>
+    </div>
+    <div class="dims">
+      <article class="sheet">
+        <span class="strip" aria-hidden="true"></span>
+        <h3>Arenas</h3>
+        <p class="q">How does power operate?</p>
+        <ul>
+          <li><b>Visible power</b>Formal rules, institutions and observable decision-making processes, including policies and resource allocation.</li>
+          <li><b>Hidden power</b>Control over agendas and participation, including whose concerns reach decision-making spaces and whose are excluded.</li>
+          <li><b>Invisible power</b>Beliefs, ideologies, social norms and internalized assumptions that shape people’s understanding of themselves, others and the world.</li>
+          <li><b>Systemic power</b>The deeply embedded structures and logics that organize social and economic life, including capitalism, colonialism, patriarchy and structural racism.</li>
+        </ul>
+      </article>
+      <article class="sheet">
+        <span class="strip" aria-hidden="true"></span>
+        <h3>Expressions</h3>
+        <p class="q">How do people exercise power?</p>
+        <ul>
+          <li><b>Power to</b>The capacity to act and pursue an objective.</li>
+          <li><b>Power with</b>Collective strength developed through shared action, solidarity and alliances.</li>
+          <li><b>Power within</b>Self-worth, self-knowledge and confidence, including recognition of one’s capacity to act.</li>
+          <li><b>Power for</b>The values, visions and purposes that inspire action and give it direction.</li>
+        </ul>
+      </article>
+      <article class="sheet">
+        <span class="strip" aria-hidden="true"></span>
+        <h3>Spaces</h3>
+        <p class="q">Where does participation and influence happen?</p>
+        <ul>
+          <li><b>Closed spaces</b>Decisions are made within a restricted group.</li>
+          <li><b>Invited spaces</b>People participate through an invitation from those convening a process.</li>
+          <li><b>Claimed spaces</b>People create or assert spaces for participation and action themselves.</li>
+        </ul>
+      </article>
+      <article class="sheet">
+        <span class="strip" aria-hidden="true"></span>
+        <h3>Levels</h3>
+        <p class="q">At what scale does power operate?</p>
+        <ul>
+          <li>Power operates from households and local settings to national and international arenas. Processes at one level can enable or constrain action elsewhere.</li>
+        </ul>
+      </article>
+    </div>
+    <p class="close">These dimensions interact. The framework helps us examine their combinations and how they change across contexts and over time.</p>
+  </div>
+</section>
+
+<section class="sec research" id="research">
+  <div class="wrap split">
+    <div class="yblock paint">
+      <h2 class="slab">Our research</h2>
+      <h3>Understanding power, aligning strategies and examining reflection</h3>
+      <p>Our research follows four connected strands. We examine experiences of power at local intervention, organizational and network levels, explore future strategies with conservation actors, assess reflection throughout the project, and discuss the applicability of findings with policymakers and wider networks.</p>
+      <svg class="arrow" viewBox="0 0 160 50" aria-hidden="true"><path d="M6 34 C 40 46, 90 40, 146 16" fill="none" stroke="#1f5fbf" stroke-width="4" stroke-linecap="round"/><path d="M126 8 L148 15 L136 34" fill="none" stroke="#1f5fbf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div>
+      <article class="axis">
+        <div class="num" aria-hidden="true">01</div>
+        <div>
+          <h3>Understanding power in conservation</h3>
+          <p class="ask">How do power dynamics shape conservation strategies and social and ecological outcomes?</p>
+          <p>We investigate experiences of power within local conservation interventions, conservation organizations and collaborative networks. Comparing these experiences will help identify recurring patterns and differences across contexts and levels.</p>
+          <details class="acc">
+            <summary>Learn more: our methods</summary>
+            <div class="acc-in">
+              <h4>Local interventions</h4>
+              <p>Fieldwork will combine in-depth interviews with documentary analysis. Interviews will explore how different actors perceive and experience power, including people involved in conservation activities and those affected by them.</p>
+              <p>Actor identification will pay particular attention to people who are marginalized or have limited influence, alongside more established institutional actors. Documentary research will examine the historical, cultural, policy and social-ecological context of each intervention.</p>
+              <h4>Conservation organizations</h4>
+              <p>Interviews with leaders of initiatives participating in the three networks will combine qualitative accounts with quantitative information. We will examine experiences of power, strategies used to navigate power imbalances and perceived consequences for conservation and people.</p>
+              <p>Social, economic and ecological indicators will support comparison across initiatives and the exploration of patterns between power dynamics, conservation practices and outcomes.</p>
+              <h4>Conservation networks</h4>
+              <p>Open-ended interviews with network leaders and key members will explore how power shapes collective organization, knowledge exchange, strategies and collective influence.</p>
+              <p>Analysis across these levels will examine whether common themes emerge and where experiences differ, without assuming that the same processes operate in every setting.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+      <article class="axis">
+        <div class="num p" aria-hidden="true">02</div>
+        <div>
+          <h3>Aligning strategies for transformative change</h3>
+          <p class="ask">How can conservation actors align their strategies to address power and strengthen their collective influence?</p>
+          <p>Through participatory futures workshops, we examine how conservation actors understand their agency, identify opportunities for power shifts and consider how their different strategies can work together.</p>
+          <details class="acc">
+            <summary>Learn more: our methods</summary>
+            <div class="acc-in">
+              <p>Workshops with each network will bring together three components.</p>
+              <h4>Exploring power and ethics</h4>
+              <p>Participants will engage with the power framework and findings from the first research strand. Interactive exercises, including role-play and case-based discussion, will explore how power is experienced in different settings.</p>
+              <h4>Developing scenarios and pathways</h4>
+              <p>Using the Disruptive Seeds approach, participants will explore preferable futures in which conservation power relations have changed. The proposed methods include an adapted Manoa Mash-up, combining Future Wheels and the Three Horizons framework.</p>
+              <p>These exercises will examine how emerging practices could develop, what interventions would be needed and where participants have the capacity to act or would need to work with others.</p>
+              <h4>Mapping and aligning strategies</h4>
+              <p>Participants will map strategies identified through the research using the Strategy Ecosystem approach, developed from social movement practice. This considers complementary strategies such as creating alternatives, shaping narratives, reforming institutions, resisting, organizing and networking.</p>
+              <p>Discussion will examine strengths, gaps and potential complementarities within each network, and how different strategies could contribute to structural and systemic change.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+      <article class="axis">
+        <div class="num" aria-hidden="true">03</div>
+        <div>
+          <h3>Examining reflection and changes in understanding</h3>
+          <p class="ask">How does taking part in the project influence participants’ understanding of power and their approaches to it?</p>
+          <p>We assess how reflection through research interviews, futures workshops and dedicated activities affects participants’ understanding of power, their own positions and, potentially, their conservation practices. We also examine power within our research.</p>
+          <details class="acc">
+            <summary>Learn more: our methods</summary>
+            <div class="acc-in">
+              <h4>Following changes over time</h4>
+              <p>Questionnaires administered before research interviews, after the first research phase and after the futures workshops will document changes in participants’ understanding of power.</p>
+              <p>Together with material generated through the interviews and workshops, these will help examine how participants reflect on their assumptions, positions and privileges, and whether they identify implications for their work.</p>
+              <h4>Reflection within local interventions</h4>
+              <p>Tailored workshops will respond to challenges identified through the research and policy engagement. They will provide space for dialogue and critical reflection on power, including participants’ capacity to speak, listen and consider different perspectives.</p>
+              <h4>Action Learning Sets</h4>
+              <p>Selected practitioners from participating networks will take part in small, structured groups. These sessions will allow them to bring practical challenges, question assumptions with peers and reflect on attempts to address power in their work.</p>
+              <h4>Reflection within the research team</h4>
+              <p>Researchers will prepare individual statements on their perspectives, assumptions and positionality. A collective tanglegram will help make relationships and power within the project visible.</p>
+              <p>Participant observation and regular reflective journals will document the research process. Advisory board discussions will provide external perspectives on the team’s approach and emerging questions.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+      <article class="axis">
+        <div class="num p" aria-hidden="true">04</div>
+        <div>
+          <h3>Examining relevance for policy and wider movements</h3>
+          <p class="ask">Under what conditions can the project’s findings and approaches inform other conservation and governance contexts?</p>
+          <p>We engage policymakers, wider conservation networks and social movements to examine the relevance and applicability of the approaches explored through POWERSHIFT.</p>
+          <details class="acc">
+            <summary>Learn more: our methods</summary>
+            <div class="acc-in">
+              <h4>Engagement in case-study countries</h4>
+              <p>Initial meetings with policymakers will gather perspectives and identify relevant policy questions. Mid-project meetings will provide opportunities to discuss emerging findings and receive feedback.</p>
+              <p>Where relevant and desired, policymakers may also join tailored reflection workshops. End-of-project focus groups will examine the applicability of the strategies and recommendations emerging from the research.</p>
+              <h4>Discussion in research-partner countries</h4>
+              <p>Focus groups with policymakers will consider how findings relate to other national policy contexts. These discussions will examine potential barriers and the conditions needed for approaches to be adapted or implemented.</p>
+              <h4>Exchanges with wider networks and movements</h4>
+              <p>Dedicated strategy workshops will introduce the Strategy Ecosystem approach and discuss findings with other conservation networks and social movements.</p>
+              <p>Participants will consider their relevance to their own organizational structures, strategies and experiences of power, helping assess the possibilities and limits of applying the approaches more widely.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec change" id="change">
+  <div class="wrap">
+    <div class="label-row"><h2 class="label yellow paint slab">Theory of change</h2><svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30 L18 22 M14 10 L22 18 M28 6 L28 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg></div>
+    <div class="narrow">
+      <h3>Our ambition: investigating pathways towards more just and effective conservation</h3>
+      <p class="lede">POWERSHIFT examines whether integrating social movement insights, strategic alignment and reflective practice can help conservation actors navigate and shift power relations.</p>
+      <p>Our Theory of Change identifies four intended outcomes:</p>
+      <ol class="outcomes">
+        <li>Improved understanding of how power influences conservation and social-ecological outcomes.</li>
+        <li>Strengthened foresight and strategic alignment across conservation initiatives.</li>
+        <li>A stronger culture of reflection and learning within conservation.</li>
+        <li>Policies and practices that better reflect equitable and just conservation.</li>
+      </ol>
+      <p>These pathways describe the project’s proposed contribution to transformative change. The research will examine the assumptions behind them and the conditions under which they may be realized.</p>
+      <details class="acc">
+        <summary>Explore our Theory of Change</summary>
+        <div class="acc-in">
+          <div class="fig-ph">Figure to come: the full Theory of Change diagram opens here, in place. Source file to be supplied by the team.</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec places" id="places">
+  <div class="wrap">
+    <h2 class="banner paint slab">Where and with whom we work <svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30 L18 22 M14 10 L22 18 M28 6 L28 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg></h2>
+    <div class="split">
+      <h3 class="claim" style="font-size:clamp(24px,2.4vw,32px)">Exploring power at different levels and in different contexts</h3>
+      <div>
+        <p>POWERSHIFT examines power within local interventions, conservation organizations and collaborative networks.</p>
+        <p>The local case studies provide detailed accounts of particular conservation settings. Research across organizations and networks allows broader comparison. Together, these perspectives help us explore which themes recur across levels and which remain specific to a context.</p>
+        <p>Our local research involves HAkA in Indonesia, a platform on people and large carnivores in Italy, and WaSiMa in Tanzania. The participating networks are WFN’s Asian chapter, Maliasili and the regional platforms on people and large carnivores.</p>
+      </div>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="case-photo">Photo to come: fieldwork with HAkA, Leuser Ecosystem, Aceh<span class="where">Indonesia / HAkA</span></div>
+        <h3>Forest conservation with HAkA</h3>
+        <p>HAkA works to protect the Leuser Ecosystem in Aceh, Sumatra, combining conservation advocacy with forest monitoring and support for communities.</p>
+        <p>This context brings questions of forest governance, competing land uses, rights and participation into the study of power in conservation.</p>
+        <details class="acc">
+          <summary>Learn more about this research context</summary>
+          <div class="acc-in">
+            <p>The Leuser Ecosystem supports exceptional biodiversity and the lives and livelihoods of surrounding communities. Its protection involves competing priorities over forests, land and development.</p>
+            <p>HAkA’s work includes advocacy for ecosystem protection and support for community involvement in forest governance. Its wider activities include supporting women’s participation and leadership in forest protection.</p>
+            <p>POWERSHIFT will examine experiences of power within a selected intervention developed with HAkA, alongside the organizational and network research.</p>
+            <p class="todo">[Add the agreed intervention, location, participating groups and specific research focus once confirmed.]</p>
+          </div>
+        </details>
+      </article>
+      <article class="case">
+        <div class="case-photo">Photo to come: platform meeting or pastoral landscape around Rome<span class="where">Italy / People and<br>large carnivores</span></div>
+        <h3>Negotiating coexistence with wolves</h3>
+        <p>The Italian case focuses on a platform on people and large carnivores around Rome, where wolves are present in a landscape combining agricultural land, settlements and urban parks.</p>
+        <p>The platform brings together actors with different experiences, responsibilities and views of coexistence.</p>
+        <details class="acc">
+          <summary>Learn more about this research context</summary>
+          <div class="acc-in">
+            <p>Wolf presence in urban and peri-urban landscapes creates challenges for livestock keeping, wildlife management and everyday uses of shared space. It also carries strong cultural meanings and competing expectations about conservation.</p>
+            <p>The platform convenes actors including pastoralists, hunters, residents, tourism businesses, environmental organizations, veterinarians and public authorities to discuss coexistence and conflict mitigation.</p>
+            <p>POWERSHIFT will examine how participants experience power within this setting, how different perspectives enter discussions and how the surrounding institutional and social context shapes possibilities for action.</p>
+            <p>This case sits alongside research with the wider regional platforms on people and large carnivores.</p>
+          </div>
+        </details>
+      </article>
+      <article class="case">
+        <div class="case-photo">Photo to come: village meeting with WaSiMa, western Tanzania<span class="where">Tanzania / WaSiMa</span></div>
+        <h3>Community-led coexistence with WaSiMa</h3>
+        <p>WaSiMa (Watu, Simba na Mazingira) works in western Tanzania to support coexistence between people and lions through community engagement, local governance and livelihood activities.</p>
+        <p>The case provides a setting for examining power within conservation efforts that seek to strengthen local participation and agency.</p>
+        <details class="acc">
+          <summary>Learn more about this research context</summary>
+          <div class="acc-in">
+            <p>Communities in western Tanzania experience challenges including livestock losses and crop damage, alongside wider questions about access to resources, livelihoods and relationships with conservation authorities.</p>
+            <p>WaSiMa’s approach includes community-developed bylaws, conflict mitigation and alternative income activities. Its work involves village institutions, local councils, conservation organizations and protected-area authorities.</p>
+            <p>POWERSHIFT will investigate how different actors understand and exercise power within this context, including how rules, responsibilities and opportunities to participate shape conservation practice.</p>
+            <p>The local research will be considered alongside findings from conservation organizations participating through Maliasili.</p>
+          </div>
+        </details>
+      </article>
+    </div>
+
+    <div class="networks">
+      <span class="tag paint">Network</span>
+      <div class="net">
+        <h4>Whitley Fund for Nature: Asian chapter</h4>
+        <p>The Asian chapter brings together conservation leaders within WFN’s wider network. It offers a setting for examining experiences of power across varied conservation initiatives and for exploring strategic alignment through the project’s workshops.</p>
+      </div>
+      <div class="net">
+        <h4>Maliasili</h4>
+        <p>Maliasili supports African conservation organizations through organizational development, leadership support and access to resources. Research with participating organizations will explore how power is experienced within their work and how they understand opportunities for collective influence.</p>
+      </div>
+      <div class="net">
+        <h4>Regional platforms on people and large carnivores</h4>
+        <p>These platforms bring together actors concerned with coexistence between people and large carnivores in different European contexts. They provide settings for examining dialogue, differing interests and strategies for navigating conservation conflicts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec team" id="team">
+  <div class="wrap">
+    <div class="split">
+      <div class="label-row"><h2 class="label paint slab">Meet the team</h2><svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30 L18 22 M14 10 L22 18 M28 6 L28 16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg></div>
+      <div>
+        <p class="lede">POWERSHIFT brings together researchers with different disciplinary backgrounds and experiences in conservation, power, governance and transformative change.</p>
+        <p>Reflecting on our own assumptions, positions and relationships is part of the research.</p>
+      </div>
+    </div>
+    <h3 class="q">The people and perspectives behind POWERSHIFT: what do you hope to understand or change through POWERSHIFT?</h3>
+    <div class="carousel" data-carousel>
+      <button class="prev" type="button" aria-label="Previous portraits">‹</button>
+      <div class="band" tabindex="0" role="region" aria-label="Team portraits, scrollable">
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+        <div class="person"><div class="portrait"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="20"/><path d="M10 100 C 12 70, 32 60, 50 60 C 68 60, 88 70, 90 100 Z"/></svg></div><b>[Name]</b><span>[Institution, project role]</span><span>[Personal response]</span></div>
+      </div>
+      <button class="next" type="button" aria-label="Next portraits">›</button>
+    </div>
+    <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <details class="acc" style="margin-top:28px">
+      <summary>View the whole team</summary>
+      <div class="acc-in">
+        <h4>Working together</h4>
+        <p class="todo">[Insert the current consortium, collaborating organizations and advisory board. Distinguish research institutions, participating networks and local collaborators.]</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="sec results" id="results">
+  <div class="wrap split">
+    <div><h2 class="label paint slab">Results and resources</h2></div>
+    <div>
+      <h3 class="claim"><span class="uline">Sharing what we learn</span></h3>
+      <p class="lede">As the project develops, we will share research findings and, where appropriate, resources for conservation practitioners, policymakers, researchers and community partners.</p>
+      <p>Planned outputs include scientific publications, policy briefs, a scenario-based strategy toolkit and accessible summaries of the research.</p>
+      <ul class="outs">
+        <li>Scientific publications <i>Planned</i></li>
+        <li>Policy briefs <i>Planned</i></li>
+        <li>Scenario-based strategy toolkit <i>Planned</i></li>
+        <li>Accessible summaries of the research <i>Planned</i></li>
+      </ul>
+      <p>Results and resources will be added here as they become available.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" id="contact">
+  <div class="wrap split">
+    <div>
+      <h2>Contact</h2>
+      <p>For questions about POWERSHIFT or potential connections with your work, please contact:</p>
+      <p class="todo">[Project contact name]<br>[Project email address]<br>[Project dates]</p>
+      <a class="btn-line" href="#contact">Contact us <span aria-hidden="true">↗</span></a>
+    </div>
+    <div>
+      <h2>Funding and partners</h2>
+      <p>POWERSHIFT is supported through the Biodiversa+ BiodivTransform call.</p>
+      <div class="logos" aria-hidden="true"><div class="logo-ph"></div><div class="logo-ph"></div><div class="logo-ph"></div><div class="logo-ph"></div></div>
+      <p class="todo">[Insert the approved funding acknowledgement and funder and partner logos.]</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-carousel]').forEach(function (c) {
+  var band = c.querySelector('.band');
+  var dots = c.parentElement.querySelectorAll('.dots i');
+  function step(dir) { band.scrollBy({ left: dir * band.clientWidth, behavior: 'smooth' }); }
+  c.querySelector('.prev').addEventListener('click', function () { step(-1); });
+  c.querySelector('.next').addEventListener('click', function () { step(1); });
+  band.addEventListener('scroll', function () {
+    var max = band.scrollWidth - band.clientWidth;
+    var i = max > 0 ? Math.round(band.scrollLeft / max * (dots.length - 1)) : 0;
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+  }, { passive: true });
+});
+</script>
+<script>
+/* menu collant : surligne la section en cours */
+(function () {
+  var top = document.querySelector('.top');
+  var nav = top.querySelector('.nav');
+  var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+  var owner = {};
+  links.forEach(function (a) {
+    owner[a.hash.slice(1)] = a;
+    (a.getAttribute('data-also') || '').split(' ').forEach(function (id) { if (id) owner[id] = a; });
+  });
+  var secs = Object.keys(owner).map(function (id) { return document.getElementById(id); }).filter(Boolean)
+    .sort(function (a, b) { return a.compareDocumentPosition(b) & 4 ? -1 : 1; });
+  var current = null, ticking = false;
+  function update() {
+    ticking = false;
+    document.documentElement.style.scrollPaddingTop = top.offsetHeight + 'px';
+    var line = top.getBoundingClientRect().bottom + window.innerHeight * .3;
+    var sec = null;
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top <= line) sec = s; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) sec = secs[secs.length - 1];
+    var a = sec ? owner[sec.id] : null;
+    if (a === current) return;
+    current = a;
+    links.forEach(function (l) {
+      l.classList.toggle('is-active', l === a);
+      if (l === a) l.setAttribute('aria-current', 'location'); else l.removeAttribute('aria-current');
+    });
+    if (a && nav.scrollWidth > nav.clientWidth) {
+      nav.scrollTo({ left: a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+    }
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+</body>
+</html>
