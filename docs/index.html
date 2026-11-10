@@ -5,6 +5,7 @@
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>POWERSHIFT · Website mockups</title>
+<link rel="icon" type="image/svg+xml" href="maquettes/assets/logos/powershift-vif-icone-transparent.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="maquettes/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="maquettes/assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +33,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 header { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
 .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; font-weight: 800; font-stretch: 80%; letter-spacing: .14em; font-size: 15px; }
-.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.brand img { width: 44px; height: 44px; }
 h1 { margin: 0 0 18px; font-weight: 800; font-stretch: 72%; font-size: clamp(44px, 7vw, 92px); line-height: .92; letter-spacing: -.01em; }
 .intro { max-width: 62ch; color: var(--mute); margin: 0; }
 .intro + .intro { margin-top: 10px; }
@@ -62,6 +63,21 @@ h2 { margin: 56px 0 6px; font-weight: 700; font-stretch: 80%; font-size: 15px; t
 .palettes a::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--dot); }
 .palettes a:hover { border-color: var(--ink); }
 
+
+/* logo : ancien et nouveau */
+.logo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 28px; align-items: start; }
+@media (max-width: 900px) { .logo-grid { grid-template-columns: 1fr; } }
+.logo-col h3 { margin: 0 0 4px; font-weight: 700; font-stretch: 84%; font-size: 22px; }
+.logo-col > p { margin: 0 0 16px; font-size: 15.5px; color: #3A3833; }
+.logo-card { background: var(--card); border: 1px solid var(--line); padding: 18px 20px; margin-bottom: 16px; }
+.logo-card .row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 20px; align-items: center; }
+.logo-card .icon { width: 96px; height: 96px; object-fit: contain; }
+.logo-card .full { width: 100%; max-height: 72px; object-fit: contain; object-position: left center; }
+.logo-card .name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14.5px; }
+.logo-card .name b { font-weight: 700; font-stretch: 84%; font-size: 16px; }
+.logo-card .name span { color: var(--mute); }
+.logo-card .name a { margin-left: auto; font-weight: 600; font-size: 13.5px; }
+.logo-card.old .full { max-height: 80px; }
 footer { margin-top: 72px; padding: 28px 0 56px; border-top: 1px solid var(--line); color: var(--mute); font-size: 14.5px; }
 footer p { margin: 0 0 6px; max-width: 80ch; }
 </style>
@@ -70,7 +86,7 @@ footer p { margin: 0 0 6px; max-width: 80ch; }
 
 <header>
   <div class="wrap">
-    <div class="brand"><img src="maquettes/assets/favicon-180.png" alt="">POWERSHIFT</div>
+    <div class="brand"><img src="maquettes/assets/logos/powershift-vif-icone-transparent.svg" alt="">POWERSHIFT</div>
     <h1>Website mockups</h1>
     <p class="intro">Seven design directions for the POWERSHIFT website. Every mockup uses the same draft content, which the team will revise, and the same structure: a single long page where each “Learn more” opens in place.</p>
     <p class="intro">Photos, portraits, logos and the Theory of Change figure are placeholders until the team supplies them.</p>
@@ -162,6 +178,73 @@ footer p { margin: 0 0 6px; max-width: 80ch; }
       </div>
     </article>
 
+  </div>
+
+  <h2>Logo in the hero</h2>
+  <p class="group-note">The revised logo used as the image of the hero mosaic, on B2 and on C2 in its saffron palette. A switcher in the bottom corner moves the logo between two framings: centred, or offset so the fist sits whole in one square.</p>
+  <div class="grid">
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-b-riso-logo-hero.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-b-riso-logo-hero.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">B2 · trial</span>
+        <h3><a href="maquettes/powershift-b-riso-logo-hero.html">Riso colour, logo hero</a></h3>
+        <p>The riso logo cut into the mosaic, under the same halftone as the rest of the page; the coloured squares become transparent ink over the petals.</p>
+        <a class="open" href="maquettes/powershift-b-riso-logo-hero.html">Open mockup →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <a class="thumb" href="maquettes/powershift-c2-logo-hero.html" tabindex="-1" aria-hidden="true"><img src="img/powershift-c2-logo-hero.jpg" alt="" loading="lazy"></a>
+      <div class="body">
+        <span class="tag">C2 · trial</span>
+        <h3><a href="maquettes/powershift-c2-logo-hero.html">Documentary warm, logo hero</a></h3>
+        <p>The saffron logo in the C2 mosaic. Its ochre, brick and sky blue are the colours of the saffron palette.</p>
+        <a class="open" href="maquettes/powershift-c2-logo-hero.html">Open mockup →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <h2>Logo</h2>
+  <p class="group-note">The original logo as supplied, and the revised logo in three colourways matched to the mockups.</p>
+  <div class="logo-grid">
+    <div class="logo-col">
+      <h3>Original</h3>
+      <p>Raster image, small size: it blurs when enlarged.</p>
+      <div class="logo-card old">
+        <div class="row">
+          <img class="icon" src="maquettes/assets/logos/original-icon.jpg" alt="Original POWERSHIFT symbol">
+          <img class="full" src="maquettes/assets/logos/original-banner.jpg" alt="Original POWERSHIFT logo with name and subtitle">
+        </div>
+        <div class="name"><b>Original</b><span>JPEG, 402 px</span></div>
+      </div>
+    </div>
+    <div class="logo-col">
+      <h3>Revised</h3>
+      <p>Redrawn as vector files (SVG): sharp at every size, with the name and subtitle set beside the symbol.</p>
+      <div class="logo-card">
+        <div class="row">
+          <img class="icon" src="maquettes/assets/logos/powershift-vif-icone-transparent.svg" alt="Revised POWERSHIFT symbol, bright colourway">
+          <img class="full" src="maquettes/assets/logos/powershift-vif-logo.svg" alt="Revised POWERSHIFT logo, bright colourway">
+        </div>
+        <div class="name"><b>Bright</b><span>closest to the original colours; used for A, B, C and Lou’s mockups</span><a href="maquettes/assets/logos/powershift-vif-logo.svg" download>SVG</a></div>
+      </div>
+      <div class="logo-card">
+        <div class="row">
+          <img class="icon" src="maquettes/assets/logos/powershift-riso-icone-transparent.svg" alt="Revised POWERSHIFT symbol, riso colourway">
+          <img class="full" src="maquettes/assets/logos/powershift-riso-logo.svg" alt="Revised POWERSHIFT logo, riso colourway">
+        </div>
+        <div class="name"><b>Riso</b><span>risograph inks and halftone; used for B2</span><a href="maquettes/assets/logos/powershift-riso-logo.svg" download>SVG</a></div>
+      </div>
+      <div class="logo-card">
+        <div class="row">
+          <img class="icon" src="maquettes/assets/logos/powershift-safran-icone-transparent.svg" alt="Revised POWERSHIFT symbol, saffron colourway">
+          <img class="full" src="maquettes/assets/logos/powershift-safran-logo.svg" alt="Revised POWERSHIFT logo, saffron colourway">
+        </div>
+        <div class="name"><b>Saffron</b><span>ochre, brick and sky blue; used for C2</span><a href="maquettes/assets/logos/powershift-safran-logo.svg" download>SVG</a></div>
+      </div>
+    </div>
   </div>
 
 </main>
